@@ -12,7 +12,7 @@ export default function UserTable() {
   useEffect(() => {
     fetchUsers()
       .then(setUsers)
-      .catch((err) => setError("Failed to fetch users"))
+      .catch((err) => setError(err))
       .finally(() => setIsLoading(false))
   }, [])
 
@@ -21,7 +21,8 @@ export default function UserTable() {
       await updateUser(updatedUser)
       setUsers(users.map((user) => (user.id === updatedUser.id ? updatedUser : user)))
     } catch (err) {
-      setError("Failed to update user")
+      console.log(err);
+      setError("Failed to update user");
     }
   }
 
